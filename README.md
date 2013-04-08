@@ -16,7 +16,7 @@ tree -L <level>
 
 2. While loops:
 -------------
-while : ; do clear ; tree -L 1 ; sleep 1 ; done
+while : ; do clear ; tree ; sleep 1 ; done
 i=0 ; while [ $i -lt 10 ]; do touch tstf$i ; let i=i+1 ; done
 
 3. For loops:
@@ -34,9 +34,14 @@ Funker: echo tst* | xargs -n 1 cp testfile
 
 5. find:
 ---------
-find . -name "testfile" | xargs tar cvf myfile.tar
+find . -name "index.html" | xargs rm
 find . -type f -name "testfile" | xargs tar cvf myfile.tar
 find . -type f | xargs tar cvf myfile.tar
+
+5.5 rm -i
+-----------
+touch ./-i
+rm *
 
 6. brace expansion:
 -----------------
