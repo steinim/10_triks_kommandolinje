@@ -16,7 +16,7 @@ cd -
 
 rm -R *
 
-Oh no!
+cowsay "oh no"
 
 git checkout .
 
@@ -39,16 +39,18 @@ tree -L 3
 -------------
 while : ; do clear ; tree ; sleep 1 ; done
 
-i=1 ; while [ $i -lt 10 ]; do touch my-project/src/main/site1/index$i.html ; let i=i+1 ; done
-rm my-project/src/main/site1/index*.html
+i=1 ; while [ $i -lt 4 ]; do touch my-project/src/main/site$i/index$i.html ; let i=i+1 ; done
+rm my-project/src/main/site*/index*.html
 
 5. for loops:
 ----------
-for i in $( seq 1 3 ); do touch my-project/src/main/site1/index$i.html ;
+for i in $( seq 1 3 ); do touch my-project/src/main/site$i/index$i.html ; done
+
+rm my-project/src/main/site*/index*.html
 
 cd my-project/src/main/
 
-for i in $( seq 1 9 ); do touch site$i/index.html ; done
+for i in $( seq 1 3 ); do touch site$i/index.html ; done
 
 for d in $( ls -d site* ); do tar czf $d.tgz $d ; done
 
@@ -65,13 +67,15 @@ Funker ikke:
 cp index.html site*/
 
 Funker:
-
 echo site* | xargs -n 1 cp index.html
 
 7. find:
 ---------
-find . -name index.html | xargs rm
+find site* -name index.html | xargs rm
+
+Reverse search:
 echo site* | xargs -n 1 cp index.html
+
 find . -type f | xargs tar cvf files.tar
 tar tvf files.tar
 
@@ -104,11 +108,12 @@ for f in $( ls site* ); do _log $f ; done
 
 10. python -m SimpleHTTPServer
 -----------------------------
+echo site* | xargs -n 1 cp index.html
 cd site1
 python -m SimpleHTTPServer 8080
 cd ..
 
-i=1 ; while [ $i -lt 10 ]; do cd site$i ; eval "python -m SimpleHTTPServer 808$i &"  ; cd .. ; let i=i+1 ; done
+for i in $( seq 1 9 ); do cd site$i ; eval "python -m SimpleHTTPServer 808$i &"  ; cd .. ; let i=i+1 ; done
 
 ps -ef | grep SimpleHTTPServer | grep -v grep | awk '{print $2}' | xargs kill -9
 
