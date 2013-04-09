@@ -39,14 +39,16 @@ tree -L 3
 -------------
 while : ; do clear ; tree ; sleep 1 ; done
 
-i=0 ; while [ $i -lt 10 ]; do touch my-project/src/main/site1/index$i.html ; let i=i+1 ; done
+i=1 ; while [ $i -lt 10 ]; do touch my-project/src/main/site1/index$i.html ; let i=i+1 ; done
 rm my-project/src/main/site1/index*.html
 
 5. for loops:
 ----------
-for i in $( seq 1 10 ); do touch my-project/src/main/site1/index$i.html ;
+for i in $( seq 1 3 ); do touch my-project/src/main/site1/index$i.html ;
 
 cd my-project/src/main/
+
+for i in $( seq 1 9 ); do touch site$i/index.html ; done
 
 for d in $( ls -d site* ); do tar czf $d.tgz $d ; done
 
