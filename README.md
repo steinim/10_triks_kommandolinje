@@ -40,9 +40,12 @@ tree -L 3
 while : ; do clear ; tree ; sleep 1 ; done
 
 i=0 ; while [ $i -lt 10 ]; do touch my-project/src/main/site1/index$i.html ; let i=i+1 ; done
+rm my-project/src/main/site1/index*.html
 
 5. for loops:
 ----------
+for i in $( seq 1 10 ); do touch my-project/src/main/site1/index$i.html ;
+
 cd my-project/src/main/
 
 for d in $( ls -d site* ); do tar czf $d.tgz $d ; done
@@ -113,4 +116,3 @@ Extra:
 ---------
 curl -L http://bit.ly/10hA8iC  | bash
 telnet telehack.com 37
-cowsay
