@@ -50,6 +50,9 @@ rm my-project/src/main/site*/index*.html
 
 cd my-project/src/main/
 
+cd -
+cd -
+
 for i in $( seq 1 3 ); do touch site$i/index.html ; done
 
 for d in $( ls -d site* ); do tar czf $d.tgz $d ; done
@@ -73,7 +76,7 @@ echo site* | xargs -n 1 cp index.html
 ---------
 find site* -name index.html | xargs rm
 
-Reverse search:
+Ctrl-r:
 echo site* | xargs -n 1 cp index.html
 
 find . -type f | xargs tar cvf files.tar
