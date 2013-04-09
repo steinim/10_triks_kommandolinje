@@ -61,7 +61,7 @@ cp index.html site*/
 
 Funker:
 
-echo index.html | xargs -n 1 cp testfile
+echo site* | xargs -n 1 cp index.html
 
 7. find:
 ---------
